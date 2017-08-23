@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware'=>['auth','hospital'],'prefix'=>'hospital'],function(){
+    Route::get('basicinfo','Hospital\BasicInfoController@index')->name('hosBasicInfo.index');
+});
