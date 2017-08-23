@@ -6,7 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Role;
 class RegisterController extends Controller
 {
     /*
@@ -39,6 +39,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        $roles = Role::pluck('name','id')->all();
+        return view('auth.register',compact('roles'));
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -51,6 +56,9 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'role_id' => 'required|numeric|',
+        ],[
+            'role_id.required' => 'The Registered As Field is required',
         ]);
     }
 
@@ -63,9 +71,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'user_id'=> round(time()),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role_id' => $data['role_id'],
         ]);
     }
 }
