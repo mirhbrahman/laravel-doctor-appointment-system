@@ -4,82 +4,76 @@ namespace App\Http\Controllers\Hospital;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\HosBasicInfoRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Model\Hospital\HosBasicInfo;
 
 class BasicInfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return "I am basic info";
+        $user_id  = Auth::user()->user_id;
+        $basicInfo = HosBasicInfo::where('user_id', $user_id)->first();
+        return view('hospital.basicInfo.index',compact('basicInfo'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $input =  $request->all();
+        $user_id  = Auth::user()->user_id;
+        $basicInfo = HosBasicInfo::where('user_id', $user_id)->first();
+
+
+        //...........Validation rules
+        $roules = [
+            'name'=>'required|string|min:2|max:255',
+            'email'=>'required|string|email|max:191|unique:hos_basic_infos,email',
+            'phone'=>'required|min:8|',
+            'address'=>'required|min:3|',
+        ];
+
+
+        if(count($basicInfo)){
+            //........update
+            //...........modifinig email validation in update
+            if($user_id == $basicInfo->user_id){
+                $roules['email'] = 'required|string|email|max:191';
+            }
+
+            if($basicInfo->update($input)){
+                $request->session()->flash('message','Basic info update successfull.');
+            }else{
+                $request->session()->flash('message','Basic info update fail!!!');
+            }
+            return redirect()->route('hosBasicInfo.index');
+        }else{
+            //.......create
+            //........validation
+            $this->validate($request,$roules);
+
+            $input['user_id'] = $user_id;
+            if(HosBasicInfo::create($input)){
+                $request->session()->flash('message','Basic info create successfull.');
+            }else{
+                $request->session()->flash('message','Basic info create fail!!!');
+            }
+            return redirect()->route('hosBasicInfo.index');
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function edit()
     {
-        //
+        $user_id  = Auth::user()->user_id;
+        $basicInfo = HosBasicInfo::where('user_id', $user_id)->first();
+        if(!count($basicInfo)){
+            //..........send blank data
+        }
+        return view('hospital.basicInfo.edit',compact('basicInfo'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

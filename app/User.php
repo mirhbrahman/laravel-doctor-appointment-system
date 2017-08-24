@@ -37,4 +37,14 @@ class User extends Authenticatable
     {
         return false;
     }
+
+    public function isHospital()
+    {
+        if ($this->userRole->name == 'Hospital') {
+            return true;
+        }
+        return false;
+    }
+
+    
 }

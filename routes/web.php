@@ -20,5 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=>['auth','hospital'],'prefix'=>'hospital'],function(){
+    //............hospital basic info
     Route::get('basicinfo','Hospital\BasicInfoController@index')->name('hosBasicInfo.index');
+    Route::get('basicinfo/edit','Hospital\BasicInfoController@edit')->name('hosBasicInfo.edit');
+    Route::post('basicinfo/store','Hospital\BasicInfoController@store')->name('hosBasicInfo.store');
 });
