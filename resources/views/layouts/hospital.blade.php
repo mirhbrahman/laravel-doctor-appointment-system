@@ -281,6 +281,9 @@
 					<li>
 						<a href="{{route("hosBasicInfo.index")}}"><i class="fa fa-table fa-fw"></i> Basic Info</a>
 					</li>
+					<li>
+						<a href="{{route("branch.index")}}"><i class="fa fa-table fa-fw"></i> Brach</a>
+					</li>
 
 					<li>
 						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

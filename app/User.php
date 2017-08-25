@@ -46,5 +46,10 @@ class User extends Authenticatable
         return false;
     }
 
-    
+    public function hosBranches()
+    {
+        return $this->hasMany('App\Model\Hospital\HosBranch','user_id');
+    }
+
+
 }

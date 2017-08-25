@@ -3,7 +3,7 @@
 	<div class="col-sm-12">
 		<div class="col-sm-8 col-sm-offset-2">
 			<p style="text-align:center"><label for="">Edit Hospital Basic Info</label></p>
-			@include('errors.errors')
+			@include('includes.errors')
 			{!!Form::model($basicInfo,['method'=>'POST','action'=>'Hospital\BasicInfoController@store'])!!}
 			<label for="">Name</label>
 			{!!Form::text('name',null,['class'=>'form-control','required'])!!}

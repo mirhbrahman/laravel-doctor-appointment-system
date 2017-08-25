@@ -7,7 +7,7 @@
 	<div class="col-sm-12">
 		<div class="col-sm-8 col-sm-offset-2">
 			<p style="text-align:center"><label for="">Hospital Basic Info</label></p>
-			@include('errors.errors')
+			@include('includes.errors')
 			@if (isset($basicInfo) && count($basicInfo))
 				<table class="table">
 					<tr>
