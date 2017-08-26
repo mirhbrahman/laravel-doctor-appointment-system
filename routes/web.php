@@ -28,3 +28,8 @@ Route::group(['middleware'=>['auth','hospital'],'prefix'=>'hospital'],function()
     //..........hospital branch
     Route::resource('branch','Hospital\BranchsController');
 });
+
+//.........DOCTOR AREA
+Route::group(['middleware'=>['auth','doctor'],'prefix'=>'doctor'],function(){
+    Route::get('basicinfo','Doctor\DoctorBasicInfoController@index')->name('docBasicInfo.index');
+});

@@ -27,6 +27,8 @@ class HomeController extends Controller
         if (Auth::check()) {
             if ($user->isHospital()) {
                 return view('layouts.hospital');
+            }elseif($user->isDoctor()){
+                return view('layouts.doctor');
             }
         }
 

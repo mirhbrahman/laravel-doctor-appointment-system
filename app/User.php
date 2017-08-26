@@ -46,6 +46,14 @@ class User extends Authenticatable
         return false;
     }
 
+    public function isDoctor()
+    {
+        if ($this->userRole->name == 'Doctor') {
+            return true;
+        }
+        return false;
+    }
+
     public function hosBranches()
     {
         return $this->hasMany('App\Model\Hospital\HosBranch','user_id');
