@@ -59,5 +59,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Model\Hospital\HosBranch','user_id');
     }
 
+    public function docBasicInfo()
+    {
+        return $this->belongsTo('App\Model\Doctor\DocBasicInfo','user_id','user_id');
+    }
+
 
 }

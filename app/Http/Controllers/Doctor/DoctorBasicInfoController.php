@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Doctor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\MyServices\DocBasicInfoService;
+use App\Http\Requests\DocBasicInfoRequest;
 class DoctorBasicInfoController extends BaseController
 {
     protected $docBasicInfo;
@@ -18,69 +19,27 @@ class DoctorBasicInfoController extends BaseController
         return $this->docBasicInfo->getDocBasicInfo($this->user);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+
+    public function store(DocBasicInfoRequest $request)
     {
-        //
+        //.......cheking data exit or not
+        $docInfo = $this->user->docBasicInfo;
+        //.......create
+        if(!count($docInfo)){
+            return $this->docBasicInfo->insertDocInfo($this->user,$request);
+        }else{
+            //....update
+            return $this->docBasicInfo->updateDocInfo($this->user,$request,$docInfo);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+
+    public function edit()
     {
-        //
+        return $this->docBasicInfo->editDocBasicInfo($this->user);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

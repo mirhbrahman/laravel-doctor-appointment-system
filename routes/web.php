@@ -32,4 +32,6 @@ Route::group(['middleware'=>['auth','hospital'],'prefix'=>'hospital'],function()
 //.........DOCTOR AREA
 Route::group(['middleware'=>['auth','doctor'],'prefix'=>'doctor'],function(){
     Route::get('basicinfo','Doctor\DoctorBasicInfoController@index')->name('docBasicInfo.index');
+    Route::get('basicinfo/edit','Doctor\DoctorBasicInfoController@edit')->name('docBasicInfo.edit');
+    Route::post('basicinfo/store','Doctor\DoctorBasicInfoController@store')->name('docBasicInfo.store');
 });
