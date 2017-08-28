@@ -27,6 +27,10 @@ Route::group(['middleware'=>['auth','hospital'],'prefix'=>'hospital'],function()
     Route::post('basicinfo/store','Hospital\BasicInfoController@store')->name('hosBasicInfo.store');
     //..........hospital branch
     Route::resource('branch','Hospital\BranchsController');
+    //.........find hospital doctor
+    Route::get('doctor/search','Hospital\DoctorsController@search')->name('hosDoc.search');
+    Route::get('doctor/find','Hospital\DoctorsController@search')->name('hosDoc.search2');
+    Route::post('doctor/find','Hospital\DoctorsController@find')->name('hosDoc.find');
 });
 
 //.........DOCTOR AREA
