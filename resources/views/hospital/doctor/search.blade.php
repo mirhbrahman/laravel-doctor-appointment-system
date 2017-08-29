@@ -32,7 +32,7 @@
 								<p style="margin:0">{{$doctor->email}}</p>
 							</div>
 							<div class="col-sm-3">
-								<a href="#" class="btn btn-block btn-info">Add</a>
+								<a href="{{route('hosDoc.add',$doctor->user_id)}}" class="btn btn-block btn-info">Add</a>
 							</div>
 						</div>
 					@endforeach

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\User;
 use App\Role;
+
 class DoctorsController extends BaseController
 {
 	//...........open search page
@@ -35,5 +36,32 @@ class DoctorsController extends BaseController
 			$noData = 'No Data Found !!!';
 		}
 		return view('hospital.doctor.search',compact('doctors','noData'));
+	}
+
+	//...........open doctor add page
+	public function add($doc_id = 0)
+	{
+		$doc = User::find($doc_id);
+		if(!count($doc)){
+			return redirect()->route('hosDoc.search');
+		}
+		//...........hospital branches
+		$branches = $this->user->hosBranches->pluck('name','id')->toArray();
+		//...........hospital departmetn
+		$depts = $this->user->hosDepts->pluck('name','id')->toArray();
+		return view('hospital.doctor.add',compact('doc','branches','depts'));
+	}
+
+	//...........sending request to doctor
+	public function sendDocRequest(Request $request)
+	{
+		$this->validate($request,[
+			'doc_id'=>'required',
+			'branch'=>'required|numeric',
+			'dept'=>'required|numeric'
+		],[
+			'dept.required'=>'The departmetn field is required.'
+		]);
+		return $request->all();
 	}
 }
