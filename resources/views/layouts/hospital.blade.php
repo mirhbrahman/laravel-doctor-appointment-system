@@ -96,6 +96,9 @@
 						<a href="{{route("branch.index")}}"><i class="fa fa-table fa-fw"></i> Brach</a>
 					</li>
 					<li>
+						<a href="{{route("dept.index")}}"><i class="fa fa-table fa-fw"></i> Department</a>
+					</li>
+					<li>
 						<a href="{{route("hosDoc.search")}}"><i class="fa fa-plus fa-fw"></i> Add Doctor</a>
 					</li>
 
