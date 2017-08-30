@@ -88,7 +88,7 @@
 								@if (isset($fee))
 									<td>{{$doctor->dept->name}}</td>
 								@else
-									<td><span style="color:red">Not set yet</span> <a href="#"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>
+									<td><span style="color:red">Not set yet</span> <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>
 								@endif
 							</tr>
 						</table>
@@ -97,7 +97,8 @@
 							<label for="">Visiting Hours</label>
 							@if (isset($work))
 								@else
-								<td><span style="color:red">Not set yet</span> <a href="#"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>	
+								<td><span style="color:red">Not set yet</span> <a href="#"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>
+								<td>
 							@endif
 						</table>
 

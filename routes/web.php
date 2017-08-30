@@ -41,6 +41,10 @@ Route::group(['middleware'=>['auth','hospital'],'prefix'=>'hospital'],function()
     Route::get('doctor/list','Hospital\DoctorsController@docList')->name('hosDoc.list');
     Route::get('doctor/view/{id}','Hospital\DoctorsController@docShow')->name('hosDoc.show');
 
+    //..........hospitals doctor fee
+    Route::get('doctor/fee/{id}','Hospital\DocFeeController@add')->name('docFee.add');
+    Route::post('doctor/store','Hospital\DocFeeController@store')->name('docFee.store');
+
 });
 
 //.........DOCTOR AREA
