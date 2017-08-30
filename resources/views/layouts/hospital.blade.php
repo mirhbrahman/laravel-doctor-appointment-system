@@ -98,19 +98,18 @@
 					<li>
 						<a href="{{route("dept.index")}}"><i class="fa fa-table fa-fw"></i> Department</a>
 					</li>
-					<li>
-						<a href="{{route("hosDoc.search")}}"><i class="fa fa-plus fa-fw"></i> Add Doctor</a>
-					</li>
 
 					<li>
-						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Doctor<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
+
 							<li>
-								<a href="flot.html">Flot Charts</a>
+								<a  href="{{route("hosDoc.search2")}}"><i class="fa fa-plus fa-fw"></i> Add Doctor</a>
 							</li>
 							<li>
-								<a href="morris.html">Morris.js Charts</a>
+								<a href="{{route("hosDoc.list")}}"><i class="fa fa-list fa-fw"></i> Doctor List</a>
 							</li>
+
 						</ul>
 						<!-- /.nav-second-level -->
 					</li>

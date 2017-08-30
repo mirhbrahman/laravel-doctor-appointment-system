@@ -81,6 +81,24 @@ class DoctorsController extends BaseController
 	//..........all doctors of the hospital
 	public function docList()
 	{
-		return 'doc list';
+		//..........get all doctors of this hospital
+		$doctors = Relation::select('relations.*','users.user_id','users.name','users.email')
+		->join('users','relations.doc_id','=','users.user_id')
+		->where('relations.action_user_id', $this->user->user_id)
+		->get();
+
+		return view('hospital.doctor.list',compact('doctors'));
+	}
+
+	//..........view hospitals doctor
+	public function docShow($id=0)
+	{
+		//..........get doctors by relation id for view
+		$doctor = Relation::select('relations.*','users.user_id','users.name','users.email')
+		->join('users','relations.doc_id','=','users.user_id')
+		->where('relations.action_user_id', $this->user->user_id)
+		->where('relations.id',$id)
+		->first();
+		return view('hospital.doctor.view',compact('doctor'));
 	}
 }

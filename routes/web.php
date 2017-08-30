@@ -29,12 +29,18 @@ Route::group(['middleware'=>['auth','hospital'],'prefix'=>'hospital'],function()
     Route::resource('branch','Hospital\BranchsController');
     //..........hospital department
     Route::resource('dept','Hospital\DeptsController');
-    //.........find hospital doctor
+    //.........hospital doctor..........
+    //.........doctor adding system
     Route::get('doctor/search','Hospital\DoctorsController@search')->name('hosDoc.search');
     Route::get('doctor/find','Hospital\DoctorsController@search')->name('hosDoc.search2');
     Route::post('doctor/find','Hospital\DoctorsController@find')->name('hosDoc.find');
     Route::get('doctor/add/{doc_id}','Hospital\DoctorsController@add')->name('hosDoc.add');
     Route::post('doctor/request','Hospital\DoctorsController@sendDocRequest')->name('hosDoc.request.send');
+
+    //...........doctor view system
+    Route::get('doctor/list','Hospital\DoctorsController@docList')->name('hosDoc.list');
+    Route::get('doctor/view/{id}','Hospital\DoctorsController@docShow')->name('hosDoc.show');
+
 });
 
 //.........DOCTOR AREA
