@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\User;
 use App\Role;
+use App\Model\Relation;
 
 class DoctorsController extends BaseController
 {
@@ -57,11 +58,29 @@ class DoctorsController extends BaseController
 	{
 		$this->validate($request,[
 			'doc_id'=>'required',
-			'branch'=>'required|numeric',
-			'dept'=>'required|numeric'
+			'branch_id'=>'required|numeric',
+			'dept_id'=>'required|numeric'
 		],[
 			'dept.required'=>'The departmetn field is required.'
 		]);
-		return $request->all();
+		$input = $request->all();
+
+		//........adding hospital information
+		$input['hos_id'] = $this->user->user_id;
+		$input['action_user_id'] = $this->user->user_id;
+
+		if (Relation::create($input)) {
+			$request->session()->flash('message','Request send.');
+		}else{
+			$request->session()->flash('message','Request send fail!!!');
+		}
+
+		return redirect()->route('hosDoc.search');
+	}
+
+	//..........all doctors of the hospital
+	public function docList()
+	{
+		return 'doc list';
 	}
 }

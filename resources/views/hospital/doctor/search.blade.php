@@ -3,6 +3,7 @@
 @section('content')
 	<div class="col-sm-12">
 		<div class="col-sm-6 col-sm-offset-3">
+			@include('includes.errors')
 			<h4>Find Doctor</h4>
 			{!!Form::open(['method'=>'POST','action'=>'Hospital\DoctorsController@find'])!!}
 			<div id="custom-search-input">

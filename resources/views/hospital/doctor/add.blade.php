@@ -48,9 +48,9 @@
 						{{Form::open(['method'=>'POST','action'=>'Hospital\DoctorsController@sendDocRequest'])}}
 						{{Form::hidden('doc_id',$doc->user_id)}}
 						<label for="">Branch</label>
-						{{Form::select('branch',[''=>'Choose']+$branches,null,['class'=>'form-control'])}}
+						{{Form::select('branch_id',[''=>'Choose']+$branches,null,['class'=>'form-control'])}}
 						<label for="">Departmetn</label>
-						{{Form::select('dept',[''=>'Choose']+$depts,null,['class'=>'form-control'])}}
+						{{Form::select('dept_id',[''=>'Choose']+$depts,null,['class'=>'form-control'])}}
 						<br>
 						{{Form::submit('Send Request',['class'=>'btn btn-primary'])}}
 						{{Form::close()}}
