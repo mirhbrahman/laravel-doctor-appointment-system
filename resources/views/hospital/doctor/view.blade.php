@@ -78,15 +78,16 @@
 			<div class="panel-body">
 				@if (isset($doctor) && count($doctor))
 					<div class="col-sm-4">
+						@include('includes.errors')
 						<table class="table">
 							<tr>
 								<td><b>Department</b></td>
 								<td>{{$doctor->dept->name}}</td>
 							</tr>
 							<tr>
-								<td><b>Fee</b></td>
+								<td><b>Fee (TK)</b></td>
 								@if (isset($fee))
-									<td>{{$doctor->dept->name}}</td>
+									<td>{{$fee->fee}} | <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Edit</a></td>
 								@else
 									<td><span style="color:red">Not set yet</span> <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>
 								@endif

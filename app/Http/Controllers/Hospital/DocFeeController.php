@@ -23,7 +23,8 @@ class DocFeeController extends BaseController
 		}
 
 		//........if fee not created load default
-		$fee = HosDocFee::find($rel->id);
+		$fee = HosDocFee::where('relation_id',$rel->id)->first();
+
 		if (!count($fee)) {
 			$fee = $this->getNew();
 		}
@@ -38,13 +39,13 @@ class DocFeeController extends BaseController
 		$input = $request->all();
 
 		$this->validate($request,[
-			'rel_id' => 'required|numeric',
+			'relation_id' => 'required|numeric',
 			'fee' => 'required|numeric',
 		]);
 
 		//.........checking relation is true or not
 		$rel = Relation::select('relations.*')
-		->where('id',$input['rel_id'])
+		->where('id',$input['relation_id'])
 		->where('action_user_id', $this->user->user_id)
 		->where('status',1)
 		->first();
@@ -53,11 +54,26 @@ class DocFeeController extends BaseController
 		}
 
 		//........checking fee created or not
-		$fee = HosDocFee::find($rel->id);
+		$fee = HosDocFee::where('relation_id',$rel->id)->first();
 		if (!count($fee)) {
-			//.....create
+			//.........create
+			if (HosDocFee::create($input)) {
+				$request->session()->flash('message','Fee set successful');
+				return redirect()->route('hosDoc.show',$rel->id);
+			}else{
+				$request->session()->flash('message','Fee set fail!!!');
+				return redirect()->route('hosDoc.show',$rel->id);
+			}
 		}else{
-			//.......update
+			//..........update
+			$fee->fee = $input['fee'];
+			if ($fee->update()) {
+				$request->session()->flash('message','Fee update successful');
+				return redirect()->route('hosDoc.show',$rel->id);
+			}else{
+				$request->session()->flash('message','Fee update fail!!!');
+				return redirect()->route('hosDoc.show',$rel->id);
+			}
 		}
 
 	}

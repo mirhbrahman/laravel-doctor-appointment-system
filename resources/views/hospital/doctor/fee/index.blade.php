@@ -6,10 +6,11 @@
 		<p>Doc Email: {{$doc->email}}</p>
 		<hr>
 		<div class="col-sm-6">
+			
 			<label for="">Fee (TK)</label>
 			@include('includes.errors')
 			{{Form::model($fee,['action'=>'Hospital\DocFeeController@store','method'=>'POST'])}}
-			{{Form::hidden('rel_id',$rel->id)}}
+			{{Form::hidden('relation_id',$rel->id)}}
 			{{Form::number('fee',null,['class'=>'form-control'])}}
 			<br>
 			{{Form::submit('Submit',['class'=>'btn btn-primary'])}}

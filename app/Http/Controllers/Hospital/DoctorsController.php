@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\User;
 use App\Role;
 use App\Model\Relation;
+use App\Model\Hospital\HosDocFee;
 
 class DoctorsController extends BaseController
 {
@@ -99,6 +100,12 @@ class DoctorsController extends BaseController
 		->where('relations.action_user_id', $this->user->user_id)
 		->where('relations.id',$id)
 		->first();
-		return view('hospital.doctor.view',compact('doctor'));
+
+		if (!count($doctor)) {
+			return "Don't be over smart.";
+		}
+		//.........doctor fee
+		$fee = HosDocFee::where('relation_id',$doctor->id)->first();
+		return view('hospital.doctor.view',compact('doctor','fee'));
 	}
 }
