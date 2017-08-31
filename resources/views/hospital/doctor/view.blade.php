@@ -77,63 +77,145 @@
 			<div class="panel-heading"><label for="">Hospital Info</label></div>
 			<div class="panel-body">
 				@if (isset($doctor) && count($doctor))
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						@include('includes.errors')
 						<table class="table">
 							<tr>
 								<td><b>Department</b></td>
 								<td>{{$doctor->dept->name}}</td>
 							</tr>
-							<tr>
-								<td><b>Fee (TK)</b></td>
-								@if (isset($fee))
-									<td>{{$fee->fee}} | <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Edit</a></td>
-								@else
-									<td><span style="color:red">Not set yet</span> <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>
-								@endif
-							</tr>
+
 						</table>
 
-						<table class="table">
-							<label for="">Visiting Hours</label>
-							@if (isset($work))
-								@else
-								<td><span style="color:red">Not set yet</span> <a href="#"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>
-								<td>
+						<label for="">Visiting Hours</label>
+						@if (isset($visit) && count($visit))
+							<table class="table">
+								<thead>
+									<th>Day</th>
+									<th>Start</th>
+									<th>Finish</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Saturday</td>
+										@if ($visit->sat_s == null || $visit->sat_e == null)
+											<td colspan="2" style="color:red;text-align:center">OFF</td>
+										@else
+											<td>{{date('h:i:s a', strtotime($visit->sat_s))}}</td>
+											<td>{{date('h:i:s a', strtotime($visit->sat_e))}}</td>
+										@endif
+									</tr>
+
+									<tr>
+										<td>Sunday</td>
+										@if ($visit->sun_s == null || $visit->sun_e == null)
+											<td colspan="2" style="color:red;text-align:center">OFF</td>
+										@else
+											<td>{{date('h:i:s a', strtotime($visit->sun_s))}}</td>
+											<td>{{date('h:i:s a', strtotime($visit->sun_e))}}</td>
+										@endif
+									</tr>
+
+									<tr>
+										<td>Monday</td>
+										@if ($visit->mon_s == null || $visit->mon_e == null)
+											<td colspan="2" style="color:red;text-align:center">OFF</td>
+										@else
+											<td>{{date('h:i:s a', strtotime($visit->mon_s))}}</td>
+											<td>{{date('h:i:s a', strtotime($visit->mon_e))}}</td>
+										@endif
+									</tr>
+
+									<tr>
+										<td>Tuesday</td>
+										@if ($visit->tue_s == null || $visit->tue_e == null)
+											<td colspan="2" style="color:red;text-align:center">OFF</td>
+										@else
+											<td>{{date('h:i:s a', strtotime($visit->tue_s))}}</td>
+											<td>{{date('h:i:s a', strtotime($visit->tue_e))}}</td>
+										@endif
+									</tr>
+
+									<tr>
+										<td>Wednesday</td>
+										@if ($visit->wed_s == null || $visit->wed_e == null)
+											<td colspan="2" style="color:red;text-align:center">OFF</td>
+										@else
+											<td>{{date('h:i:s a', strtotime($visit->wed_s))}}</td>
+											<td>{{date('h:i:s a', strtotime($visit->wed_e))}}</td>
+										@endif
+									</tr>
+
+									<tr>
+										<td>Thursday</td>
+										@if ($visit->thu_s == null || $visit->thu_e == null)
+											<td colspan="2" style="color:red;text-align:center">OFF</td>
+										@else
+											<td>{{date('h:i:s a', strtotime($visit->thu_s))}}</td>
+											<td>{{date('h:i:s a', strtotime($visit->thu_e))}}</td>
+										@endif
+									</tr>
+
+									<tr>
+										<td>Friday</td>
+										@if ($visit->fri_s == null || $visit->fri_e == null)
+											<td colspan="2" style="color:red;text-align:center">OFF</td>
+										@else
+											<td>{{date('h:i:s a', strtotime($visit->fri_s))}}</td>
+											<td>{{date('h:i:s a', strtotime($visit->fri_e))}}</td>
+										@endif
+									</tr>
+
+								</tbody>
+							</table>
+						@else
+							<td><span style="color:red">Not set yet</span> <a href="{{route('docVisit.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>
+							<td>
 							@endif
-						</table>
 
-					</div>
-					<div class="col-sm-8">
-						<label for="">Branch</label>
-						<table class="table">
-							<tr>
-								<td>Name</td>
-								<td>{{$doctor->branch->name}}</td>
-							</tr>
-							<tr>
-								<td>Email</td>
-								<td>{{$doctor->branch->email}}</td>
-							</tr>
-							<tr>
-								<td>Phone</td>
-								<td>{{$doctor->branch->phone}}</td>
-							</tr>
-							<tr>
-								<td>Address</td>
-								<td>{{$doctor->branch->address}}</td>
-							</tr>
-							<tr>
-								<td>About</td>
-								<td>{{$doctor->branch->about}}</td>
-							</tr>
+						</div>
+						<div class="col-sm-6">
+							<table class="table">
+								<tr>
+									<td><b>Fee (TK)</b></td>
+									@if (isset($fee) && count($fee))
+										<td>{{$fee->fee}} | <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Edit</a></td>
+									@else
+										<td><span style="color:red">Not set yet</span> <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>
+									@endif
+								</tr>
+							</table>
+							<label for="">Branch</label>
+							<br>
+							<br>
+							<table class="table">
+								<tr>
+									<td>Name</td>
+									<td>{{$doctor->branch->name}}</td>
+								</tr>
+								<tr>
+									<td>Email</td>
+									<td>{{$doctor->branch->email}}</td>
+								</tr>
+								<tr>
+									<td>Phone</td>
+									<td>{{$doctor->branch->phone}}</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>{{$doctor->branch->address}}</td>
+								</tr>
+								<tr>
+									<td>About</td>
+									<td>{{$doctor->branch->about}}</td>
+								</tr>
 
 
-						</table>
-					</div>
-				@endif
+							</table>
+						</div>
+					@endif
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 @endsection

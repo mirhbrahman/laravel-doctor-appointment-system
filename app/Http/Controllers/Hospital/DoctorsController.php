@@ -8,6 +8,7 @@ use App\User;
 use App\Role;
 use App\Model\Relation;
 use App\Model\Hospital\HosDocFee;
+use App\Model\Hospital\HosDocVisit;
 
 class DoctorsController extends BaseController
 {
@@ -106,6 +107,8 @@ class DoctorsController extends BaseController
 		}
 		//.........doctor fee
 		$fee = HosDocFee::where('relation_id',$doctor->id)->first();
-		return view('hospital.doctor.view',compact('doctor','fee'));
+		//.........doctor visiting hours
+		$visit = HosDocVisit::where('relation_id',$doctor->id)->first();
+	return view('hospital.doctor.view',compact('doctor','fee','visit'));
 	}
 }
