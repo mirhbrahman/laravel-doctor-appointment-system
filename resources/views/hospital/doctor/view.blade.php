@@ -14,6 +14,9 @@
 	vertical-align: top;
 	border-top: 1px solid #ddd;
 }
+label{
+	color:#098009;
+}
 </style>
 <div class="col-sm-12">
 	<div class="col-sm-12">
