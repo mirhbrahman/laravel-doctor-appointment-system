@@ -14,6 +14,8 @@ class BaseController extends Controller
       $this->user = Auth::user();
       return $next($request);
     });
+
+    
   }
 
   public function getRole(){

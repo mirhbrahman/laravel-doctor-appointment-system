@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\DocBasicInfoServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
     ],
