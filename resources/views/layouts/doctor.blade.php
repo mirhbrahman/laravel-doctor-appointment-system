@@ -94,7 +94,10 @@
 						<a href="{{route('docBasicInfo.index')}}"><i class="fa fa-table fa-fw"></i> Basic Info</a>
 					</li>
 					<li>
-						<a href="{{route('request.all')}}"><i class="fa fa-users" aria-hidden="true"></i> Request <span class="badge">{{$docRequest}}</span></a>
+						<a href="{{route('request.all')}}"><i class="fa fa-users fa-fw" aria-hidden="true"></i> Request <span class="badge">{{$docRequest}}</span></a>
+					</li>
+					<li>
+						<a href="{{route('docHos.index')}}"><i class="fa fa-table fa-fw" aria-hidden="true"></i> Hospital </a>
 					</li>
 
 

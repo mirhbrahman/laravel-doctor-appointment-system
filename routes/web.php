@@ -57,8 +57,12 @@ Route::group(['middleware'=>['auth','doctor'],'prefix'=>'doctor'],function(){
     Route::get('basicinfo/edit','Doctor\DoctorBasicInfoController@edit')->name('docBasicInfo.edit');
     Route::post('basicinfo/store','Doctor\DoctorBasicInfoController@store')->name('docBasicInfo.store');
 
-//...........request from hospital
-Route::get('request/all','Doctor\RequestController@requestList')->name('request.all');
-Route::post('request/accept','Doctor\RequestController@accept')->name('request.accept');
-Route::post('request/reject','Doctor\RequestController@reject')->name('request.reject');
+    //...........request from hospital
+    Route::get('request/all','Doctor\RequestController@requestList')->name('request.all');
+    Route::post('request/accept','Doctor\RequestController@accept')->name('request.accept');
+    Route::post('request/reject','Doctor\RequestController@reject')->name('request.reject');
+
+    //..........member hospital
+    Route::get('hospital','Doctor\HospitalsController@index')->name('docHos.index');
+
 });
