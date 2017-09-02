@@ -66,3 +66,13 @@ Route::group(['middleware'=>['auth','doctor'],'prefix'=>'doctor'],function(){
     Route::get('hospital','Doctor\HospitalsController@index')->name('docHos.index');
 
 });
+
+//.........PATIENT AREA
+Route::group(['middleware'=>['auth','patient'],'prefix'=>'patient'],function(){
+    Route::get('basicinfo','Patient\PatientBasicInfoController@index')->name('patientBasicInfo.index');
+    Route::get('basicinfo/edit','Patient\PatientBasicInfoController@edit')->name('patientBasicInfo.edit');
+    Route::post('basicinfo/store','Patient\PatientBasicInfoController@store')->name('patientBasicInfo.store');
+
+
+
+});

@@ -31,6 +31,8 @@ class HomeController extends Controller
                 return view('layouts.hospital');
             }elseif($user->isDoctor()){
                 return view('layouts.doctor');
+            }elseif($user->isPatient()){
+                return view('layouts.patient');
             }
         }
 

@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Closure;
-use App\User;
-class Doctor
+
+class Patient
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Doctor
     {
         $user = Auth::user();
         if (Auth::check()) {
-            if ($user->userRole->name == 'Doctor' || $user->isAdmin()) {
+            if ($user->userRole->name == 'Patient' || $user->isAdmin()) {
                 return $next($request);
             }
         }

@@ -54,9 +54,22 @@ class User extends Authenticatable
         return false;
     }
 
+    public function isPatient()
+    {
+        if ($this->userRole->name == 'Patient') {
+            return true;
+        }
+        return false;
+    }
+
     public function hosBranches()
     {
         return $this->hasMany('App\Model\Hospital\HosBranch','user_id');
+    }
+
+    public function hosDepts()
+    {
+        return $this->hasMany('App\Model\Hospital\Department','user_id');
     }
 
     public function docBasicInfo()
@@ -64,10 +77,12 @@ class User extends Authenticatable
         return $this->belongsTo('App\Model\Doctor\DocBasicInfo','user_id','user_id');
     }
 
-    public function hosDepts()
+    public function patientBasicInfo()
     {
-        return $this->hasMany('App\Model\Hospital\Department','user_id');
+        return $this->belongsTo('App\Model\Patient\PatientBasicInfo','user_id','user_id');
     }
+
+
 
 
 }
