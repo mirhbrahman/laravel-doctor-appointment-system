@@ -17,6 +17,6 @@ class HospitalsController extends BaseController
 		->where('status',1)
 		->get();
 
-		return view('doctor.hospital.list',compact('hospitalList'));
+        return view('doctor.hospital.list',compact('hospitalList'));
     }
 }

@@ -20,4 +20,13 @@ class Relation extends Model
     {
         return $this->belongsTo('App\Model\Doctor\DocBasicInfo','doc_id','user_id');
     }
+
+    public function docFee()
+    {
+        return $this->belongsTo('App\Model\Hospital\HosDocFee','id','relation_id');
+    }
+    public function docVisit()
+    {
+        return $this->belongsTo('App\Model\Hospital\HosDocVisit','id','relation_id');
+    }
 }

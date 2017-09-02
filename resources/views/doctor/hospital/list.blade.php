@@ -21,8 +21,7 @@
 							<th>Hospital Name</th>
 							<th>Email</th>
 							<th>Department</th>
-							<th>Branch</th>
-							<th>Action</th>
+							<th>Other Info</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -72,6 +71,89 @@
 
 
 														</table>
+
+														<label for="" style="color:green">Fee : {{$hospital->docFee->fee}} TK</label>
+														<br>
+														<label for="">Visiting Hours:</label>
+														<table class="table">
+															<thead>
+																<th>Day</th>
+																<th>Start</th>
+																<th>Finish</th>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Saturday</td>
+																	@if ($hospital->docVisit->sat_s == null || $hospital->docVisit->sat_e == null)
+																		<td colspan="2" style="color:red;text-align:center">OFF</td>
+																	@else
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->sat_s))}}</td>
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->sat_e))}}</td>
+																	@endif
+																</tr>
+
+																<tr>
+																	<td>Sunday</td>
+																	@if ($hospital->docVisit->sun_s == null || $hospital->docVisit->sun_e == null)
+																		<td colspan="2" style="color:red;text-align:center">OFF</td>
+																	@else
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->sun_s))}}</td>
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->sun_e))}}</td>
+																	@endif
+																</tr>
+
+																<tr>
+																	<td>Monday</td>
+																	@if ($hospital->docVisit->mon_s == null || $hospital->docVisit->mon_e == null)
+																		<td colspan="2" style="color:red;text-align:center">OFF</td>
+																	@else
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->mon_s))}}</td>
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->mon_e))}}</td>
+																	@endif
+																</tr>
+
+																<tr>
+																	<td>Tuesday</td>
+																	@if ($hospital->docVisit->tue_s == null || $hospital->docVisit->tue_e == null)
+																		<td colspan="2" style="color:red;text-align:center">OFF</td>
+																	@else
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->tue_s))}}</td>
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->tue_e))}}</td>
+																	@endif
+																</tr>
+
+																<tr>
+																	<td>Wednesday</td>
+																	@if ($hospital->docVisit->wed_s == null || $hospital->docVisit->wed_e == null)
+																		<td colspan="2" style="color:red;text-align:center">OFF</td>
+																	@else
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->wed_s))}}</td>
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->wed_e))}}</td>
+																	@endif
+																</tr>
+
+																<tr>
+																	<td>Thursday</td>
+																	@if ($hospital->docVisit->thu_s == null || $hospital->docVisit->thu_e == null)
+																		<td colspan="2" style="color:red;text-align:center">OFF</td>
+																	@else
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->thu_s))}}</td>
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->thu_e))}}</td>
+																	@endif
+																</tr>
+
+																<tr>
+																	<td>Friday</td>
+																	@if ($hospital->docVisit->fri_s == null || $hospital->docVisit->fri_e == null)
+																		<td colspan="2" style="color:red;text-align:center">OFF</td>
+																	@else
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->fri_s))}}</td>
+																		<td>{{date('h:i:s a', strtotime($hospital->docVisit->fri_e))}}</td>
+																	@endif
+																</tr>
+
+															</tbody>
+														</table>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -82,10 +164,7 @@
 										</div>
 
 									</td>
-									<td>
-									sdlfdls
 
-									</td>
 								</tr>
 
 							@endforeach
