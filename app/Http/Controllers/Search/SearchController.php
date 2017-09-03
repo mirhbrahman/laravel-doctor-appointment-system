@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Role;
 use App\User;
+use App\Model\Hospital\HosBranch;
+use App\Model\Relation;
 
 class SearchController extends Controller
 {
@@ -21,5 +23,33 @@ class SearchController extends Controller
 		$role_id = Role::where('name','Hospital')->first()->id;
 		$hospitalList = User::where('role_id',$role_id)->get();
 		return  view('search.hospital.list',compact('hospitalList'));
+	}
+
+	//........get specific hospital
+	public function getHospital($id = 0)
+	{
+		$hospital = User::find($id);
+		//........if not found go to search home
+		if (!count($hospital)) {
+			return redirect()->route('search.index');
+		}
+		return view('search.hospital.view',compact('hospital'));
+	}
+	//........get specific hospital
+	public function getHospitalBranch($id = 0,$branch_id = 0)
+	{
+		$hospital = User::find($id);
+		$branch = HosBranch::find($branch_id);
+		//........if not found go to search home
+		if (!count($hospital) || !count($branch)) {
+			return redirect()->route('search.index');
+		}
+
+		$doctors = Relation::where('hos_id',$hospital->user_id)
+		->where('branch_id',$branch_id)
+		->where('status',1)
+		->get();
+		
+		return view('search.hospital.branch',compact('hospital','branch','doctors'));
 	}
 }

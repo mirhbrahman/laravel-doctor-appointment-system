@@ -79,5 +79,8 @@ Route::group(['middleware'=>['auth','patient'],'prefix'=>'patient'],function(){
 //.....SEARCH
 Route::group(['prefix'=>'search'],function(){
     Route::get('/','Search\SearchController@index')->name('search.index');
+    //.........by hospital
     Route::get('hospitals','Search\SearchController@getHospitals')->name('search.hospitals');
+    Route::get('hospital/{id}','Search\SearchController@getHospital')->name('search.hospital');
+    Route::get('hospital/{id}/{branch_id}','Search\SearchController@getHospitalBranch')->name('search.hospital.branch');
 });

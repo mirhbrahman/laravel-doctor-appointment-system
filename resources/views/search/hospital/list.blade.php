@@ -9,8 +9,13 @@
 @endsection
 @section('content')
 
-
 	<div class="col-sm-12">
+		<br>
+		<p><a href="{{route('search.index')}}" class="">Home</a> / Hospital</p>
+		<br>
+	</div>
+	<div class="col-sm-12">
+
 		<div class="panel panel-default">
 			<div class="panel-heading">Hospitals</div>
 			<div class="panel-body">
@@ -22,6 +27,7 @@
 							<th>Email</th>
 							<th>Phone</th>
 							<th>Address</th>
+							<th>Option</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -41,6 +47,7 @@
 										<td>Not Set</td>
 									@endif
 
+									<td><a href="{{route('search.hospital',$hospital->user_id)}}" class="btn btn-sm btn-info">Check</a></td>
 								</tr>
 
 							@endforeach
@@ -52,6 +59,7 @@
 				</table>
 			</div>
 		</div>
+	</div>
 
 		@if (count($hospitalList))
 			<script>
