@@ -11,19 +11,19 @@ class User extends Authenticatable
     use Notifiable;
     protected $primaryKey = 'user_id';
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
     protected $fillable = [
         'user_id','name', 'email', 'password','role_id','is_active',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    * The attributes that should be hidden for arrays.
+    *
+    * @var array
+    */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -67,9 +67,17 @@ class User extends Authenticatable
         return $this->hasMany('App\Model\Hospital\HosBranch','user_id');
     }
 
+    //...........hospital all department
     public function hosDepts()
     {
         return $this->hasMany('App\Model\Hospital\Department','user_id');
+    }
+
+
+
+    public function hosBasicInfo()
+    {
+        return $this->belongsTo('App\Model\Hospital\HosBasicInfo','user_id','user_id');
     }
 
     public function docBasicInfo()

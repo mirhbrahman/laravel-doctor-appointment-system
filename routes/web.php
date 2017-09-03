@@ -69,10 +69,15 @@ Route::group(['middleware'=>['auth','doctor'],'prefix'=>'doctor'],function(){
 
 //.........PATIENT AREA
 Route::group(['middleware'=>['auth','patient'],'prefix'=>'patient'],function(){
+    //.........basic info
     Route::get('basicinfo','Patient\PatientBasicInfoController@index')->name('patientBasicInfo.index');
     Route::get('basicinfo/edit','Patient\PatientBasicInfoController@edit')->name('patientBasicInfo.edit');
     Route::post('basicinfo/store','Patient\PatientBasicInfoController@store')->name('patientBasicInfo.store');
 
+});
 
-
+//.....SEARCH
+Route::group(['prefix'=>'search'],function(){
+    Route::get('/','Search\SearchController@index')->name('search.index');
+    Route::get('hospitals','Search\SearchController@getHospitals')->name('search.hospitals');
 });
