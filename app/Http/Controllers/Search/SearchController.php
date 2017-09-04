@@ -45,11 +45,13 @@ class SearchController extends Controller
 			return redirect()->route('search.index');
 		}
 
-		$doctors = Relation::where('hos_id',$hospital->user_id)
+		$doctors = Relation::select('relations.*','users.name','users.email')
+        ->join('users','relations.doc_id','=','users.user_id')
+        ->where('hos_id',$hospital->user_id)
 		->where('branch_id',$branch_id)
 		->where('status',1)
 		->get();
-		
+
 		return view('search.hospital.branch',compact('hospital','branch','doctors'));
 	}
 }
