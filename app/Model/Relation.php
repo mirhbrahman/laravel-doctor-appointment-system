@@ -29,4 +29,9 @@ class Relation extends Model
     {
         return $this->belongsTo('App\Model\Hospital\HosDocVisit','id','relation_id');
     }
+
+    public function appoint()
+    {
+        return $this->belongsTo('App\Model\Appoint','id','relation_id');
+    }
 }

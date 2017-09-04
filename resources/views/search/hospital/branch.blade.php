@@ -97,10 +97,13 @@
 											@endif
 
 											<td>
-												<!-- Trigger the modal with a button -->
-												<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal{{$doctor->id}}">View Details</button>
 
-												<!-- Modal -->
+
+												<div class="col-sm-12">
+													<div class="col-sm-6">
+														<!-- Trigger the modal with a button -->
+														<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal{{$doctor->id}}">View Details</button>
+														<!-- Modal -->
 												<div id="myModal{{$doctor->id}}" class="modal fade" role="dialog">
 													<div class="modal-dialog">
 
@@ -214,8 +217,22 @@
 													</div>
 												</div>
 
+											</div>
 
-												<a href="{{route('hosDoc.show',$doctor->id)}}" class="btn btn-info">View</a>
+											<div class="col-sm-6">
+												@if ($doctor->appoint && $doctor->appoint->status == 0)
+													<p class="btn btn-primary">Pending Request</p>
+													@else
+														{{Form::open(['method'=>'POST','action'=>'Appoint\AppointController@requestAppoint'])}}
+														{{Form::hidden('relation_id',$doctor->id)}}
+														{{Form::submit('Appoint Request',['class'=>'btn btn-info'])}}
+														{{Form::close()}}
+														
+												@endif
+
+											</div>
+										</div>
+
 											</td>
 
 										</tr>

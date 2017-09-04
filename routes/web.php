@@ -74,6 +74,9 @@ Route::group(['middleware'=>['auth','patient'],'prefix'=>'patient'],function(){
     Route::get('basicinfo/edit','Patient\PatientBasicInfoController@edit')->name('patientBasicInfo.edit');
     Route::post('basicinfo/store','Patient\PatientBasicInfoController@store')->name('patientBasicInfo.store');
 
+    //........Appointment
+    Route::get('appoint','Appoint\AppointController@index')->name('appoint.index');
+    Route::post('appoint','Appoint\AppointController@requestAppoint')->name('appoint.request');
 });
 
 //.....SEARCH
