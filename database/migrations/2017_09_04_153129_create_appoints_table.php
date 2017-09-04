@@ -17,6 +17,11 @@ class CreateAppointsTable extends Migration
             $table->increments('id');
             $table->integer('relation_id')->index();
             $table->string('patient_id',15)->index();
+            $table->string('day');
+            $table->datetime('date');
+            $table->time('time');
+            $table->string('sl_no');
+            $table->text('msg');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
