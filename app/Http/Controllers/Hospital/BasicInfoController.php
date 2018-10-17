@@ -35,7 +35,7 @@ class BasicInfoController extends Controller
         ];
 
 
-        if(count($basicInfo)){
+        if($basicInfo){
             //........update
             //...........modifinig email validation in update
             if($user_id == $basicInfo->user_id){
@@ -69,7 +69,7 @@ class BasicInfoController extends Controller
     {
         $user_id  = Auth::user()->user_id;
         $basicInfo = HosBasicInfo::where('user_id', $user_id)->first();
-        if(!count($basicInfo)){
+        if(!$basicInfo){
             //..........send blank data
         }
         return view('hospital.basicInfo.edit',compact('basicInfo'));

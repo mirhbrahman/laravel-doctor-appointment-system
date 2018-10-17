@@ -12,7 +12,7 @@ class PatientBasicInfoController extends BaseController
     public function index()
     {
 		$patientInfo = $this->user->patientBasicInfo;
-		if(!count($patientInfo)){
+		if(!$patientInfo){
 			$patientInfo = $this->getNew();
 		}
 		return view('patient.basicinfo.index',compact('patientInfo'));
@@ -21,7 +21,7 @@ class PatientBasicInfoController extends BaseController
 	public function edit()
 	{
 		$patientInfo = $this->user->patientBasicInfo;
-		if(!count($patientInfo)){
+		if(!$patientInfo){
 			$patientInfo = $this->getNew();
 		}
 		return view('patient.basicinfo.edit',compact('patientInfo'));
@@ -32,7 +32,7 @@ class PatientBasicInfoController extends BaseController
 		//.......cheking data exit or not
         $patientInfo = $this->user->patientBasicInfo;
 
-		if(!count($patientInfo)){
+		if(!$patientInfo){
 			//.......create
 			$input = $request->all();
 			$input['user_id'] = $this->user->user_id;

@@ -45,7 +45,7 @@ class DoctorsController extends BaseController
 	public function add($doc_id = 0)
 	{
 		$doc = User::find($doc_id);
-		if(!count($doc)){
+		if(!$doc){
 			return redirect()->route('hosDoc.search');
 		}
 		//...........hospital branches
@@ -102,7 +102,7 @@ class DoctorsController extends BaseController
 		->where('relations.id',$id)
 		->first();
 
-		if (!count($doctor)) {
+		if (!$doctor) {
 			return "Don't be over smart.";
 		}
 		//.........doctor fee

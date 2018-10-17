@@ -32,7 +32,7 @@
                 <tr class="item{{$doctor->id}}">
                   <td>{{$doctor->name}}</td>
                   <td>{{$doctor->email}}</td>
-				  @if (count($doctor->docBasicInfo))
+				  @if ($doctor->docBasicInfo)
 				  	<td>{{$doctor->docBasicInfo->degree}}</td>
 					@else
 						<td>Not set yet</td>
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-	@if (count($doctors))
+	@if ($doctors)
   <script>
 
   $(document).ready(function() {

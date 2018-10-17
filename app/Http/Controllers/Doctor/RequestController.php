@@ -31,7 +31,7 @@ class RequestController extends BaseController
 		$rel = Relation::where('id',$input['relation_id'])
 		->where('doc_id',$this->user->user_id)
 		->first();
-		if (!count($rel)) {
+		if (!$rel) {
 			return redirect()->route('request.all');
 		}
 
@@ -54,7 +54,7 @@ class RequestController extends BaseController
 		$rel = Relation::where('id',$input['relation_id'])
 		->where('doc_id',$this->user->user_id)
 		->first();
-		if (!count($rel)) {
+		if (!$rel) {
 			return redirect()->route('request.all');
 		}
 

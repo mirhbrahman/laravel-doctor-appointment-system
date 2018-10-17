@@ -23,7 +23,7 @@ label{
 		<div class="panel panel-default">
 			<div class="panel-heading"><label for="">Doctor Info</label></div>
 			<div class="panel-body">
-				@if (isset($doctor) && count($doctor))
+				@if (isset($doctor) && $doctor)
 					<div class="col-sm-4">
 						@if ($doctor->docBasicInfo)
 							<img class="img-responsive img-rounded" src="{{URL::To('uploads/profilePic').'/'.$doctor->docBasicInfo->image}}" alt="No image">
@@ -79,7 +79,7 @@ label{
 		<div class="panel panel-default">
 			<div class="panel-heading"><label for="">Hospital Info</label></div>
 			<div class="panel-body">
-				@if (isset($doctor) && count($doctor))
+				@if (isset($doctor) && $doctor)
 					<div class="col-sm-6">
 						@include('includes.errors')
 						<table class="table">
@@ -91,7 +91,7 @@ label{
 						</table>
 
 						<label for="">Visiting Hours</label>
-						@if (isset($visit) && count($visit))
+						@if (isset($visit) && $visit)
 							<table class="table">
 								<thead>
 									<th>Day</th>
@@ -181,7 +181,7 @@ label{
 							<table class="table">
 								<tr>
 									<td><b>Fee (TK)</b></td>
-									@if (isset($fee) && count($fee))
+									@if (isset($fee) && $fee)
 										<td>{{$fee->fee}} | <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Edit</a></td>
 									@else
 										<td><span style="color:red">Not set yet</span> <a href="{{route('docFee.add',$doctor->id)}}"> <i class="fa fa-cog" aria-hidden="true"></i> Set</a></td>

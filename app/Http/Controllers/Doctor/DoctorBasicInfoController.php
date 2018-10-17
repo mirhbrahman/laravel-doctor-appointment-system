@@ -26,7 +26,7 @@ class DoctorBasicInfoController extends BaseController
         //.......cheking data exit or not
         $docInfo = $this->user->docBasicInfo;
         //.......create
-        if(!count($docInfo)){
+        if(!$docInfo){
             return $this->docBasicInfo->insertDocInfo($this->user,$request);
         }else{
             //....update

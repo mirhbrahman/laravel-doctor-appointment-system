@@ -17,7 +17,7 @@ class DocVisitController extends BaseController
 		->where('action_user_id', $this->user->user_id)
 		->where('status',1)
 		->first();
-		if (!count($rel)) {
+		if (!$rel) {
 			return "Don't be over smart.";
 		}
 
@@ -45,13 +45,13 @@ class DocVisitController extends BaseController
 		->where('action_user_id', $this->user->user_id)
 		->where('status',1)
 		->first();
-		if (!count($rel)) {
+		if (!$rel) {
 			return "Don't be over smart.";
 		}
 
 		//........checking fee created or not
 		$visit = HosDocVisit::where('relation_id',$rel->id)->first();
-		if (!count($visit)) {
+		if (!$visit) {
 			//.........create
 			if (HosDocVisit::create($input)) {
 				$request->session()->flash('message','Visiting hours set successful');

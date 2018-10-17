@@ -5,7 +5,7 @@ class DocBasicInfoService
 {
 	function getDocBasicInfo($user = null){
 		$docInfo = $user->docBasicInfo;
-		if(!count($docInfo)){
+		if(!$docInfo){
 			$docInfo = $this->getNew();
 		}
 		return view('doctor.basicinfo.index',compact('docInfo'));
@@ -14,7 +14,7 @@ class DocBasicInfoService
 	//..........edit doc info
 	public function editDocBasicInfo($user = null){
 		$docInfo = $user->docBasicInfo;
-		if(!count($docInfo)){
+		if(!$docInfo){
 			$docInfo = $this->getNew();
 		}
 		return view('doctor.basicinfo.edit',compact('docInfo'));

@@ -18,14 +18,14 @@ class DocFeeController extends BaseController
 		->where('action_user_id', $this->user->user_id)
 		->where('status',1)
 		->first();
-		if (!count($rel)) {
+		if (!$rel) {
 			return "Don't be over smart.";
 		}
 
 		//........if fee not created load default
 		$fee = HosDocFee::where('relation_id',$rel->id)->first();
 
-		if (!count($fee)) {
+		if (!$fee) {
 			$fee = $this->getNew();
 		}
 
@@ -49,13 +49,13 @@ class DocFeeController extends BaseController
 		->where('action_user_id', $this->user->user_id)
 		->where('status',1)
 		->first();
-		if (!count($rel)) {
+		if (!$rel) {
 			return "Don't be over smart.";
 		}
 
 		//........checking fee created or not
 		$fee = HosDocFee::where('relation_id',$rel->id)->first();
-		if (!count($fee)) {
+		if (!$fee) {
 			//.........create
 			if (HosDocFee::create($input)) {
 				$request->session()->flash('message','Fee set successful');

@@ -30,7 +30,7 @@ class SearchController extends Controller
 	{
 		$hospital = User::find($id);
 		//........if not found go to search home
-		if (!count($hospital)) {
+		if (!$hospital) {
 			return redirect()->route('search.index');
 		}
 		return view('search.hospital.view',compact('hospital'));
@@ -41,7 +41,7 @@ class SearchController extends Controller
 		$hospital = User::find($id);
 		$branch = HosBranch::find($branch_id);
 		//........if not found go to search home
-		if (!count($hospital) || !count($branch)) {
+		if (!$hospital || !$branch) {
 			return redirect()->route('search.index');
 		}
 

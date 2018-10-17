@@ -5,7 +5,7 @@
 		<h4 style="text-align:center">Add doctor to your hospital</h4>
 		<hr>
 
-		@if (isset($doc) && count($doc))
+		@if (isset($doc) && $doc)
 			<div class="col-sm-12">
 				<div class="col-sm-8 col-sm-offset-2">
 					<div class="col-sm-12">
@@ -13,7 +13,7 @@
 					</div>
 					<div class="col-sm-12" style="padding:0">
 						<div class="col-sm-4">
-							@if (count($doc->docBasicInfo))
+							@if ($doc->docBasicInfo)
 								<img class="img-responsive" src="{{URL::to('uploads/profilePic').'/'.$doc->docBasicInfo->image}}" alt="No Image">
 							@else
 								No Image
@@ -32,7 +32,7 @@
 								</tr>
 								<tr>
 									<td>Specialized</td>
-									@if (count($doc->docBasicInfo))
+									@if ($doc->docBasicInfo)
 										<td>{{$doc->docBasicInfo->degree}}</td>
 									@endif
 								</tr>
